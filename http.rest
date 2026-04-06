@@ -1,0 +1,55 @@
+####
+POST http://localhost:8000/notification/generator
+Content-Type: application/json
+
+{
+  "infoUser": "kauvergasta12@gmail.com",
+  "title": "Encomenda chegou",
+  "type": "E",
+  "message": "Beltrano sua encomenda chegou"
+}
+####
+POST http://localhost:8000/notification/generator
+Content-Type: application/json
+
+{
+  "title": "Encomenda chegue em 3 dias",
+  "type": "W",
+  "message": "Fulaninho de tal sua encomenda está a caminho"
+}
+####
+POST http://localhost:8000/notification/generator
+Content-Type: application/json
+
+{
+  "title": "Encomenda atrasada",
+  "type": "W",
+  "message": "Ciclano sua encomenda atrasou"
+}
+####
+POST http://localhost:8000/notification/generator
+Content-Type: application/json
+
+{
+  "infoUser": "kauvergasta12@gmail.com",
+  "title": "Encomenda chegou",
+  "type": "E" ,
+  "message": "Fulana sua encomenda chegou"
+}
+####
+POST http://localhost:8000/notification/generator
+Content-Type: application/json
+
+{
+  "title": "Encomenda Adiada novamente",
+  "type": "S" ,
+  "message": "José Almeida, ocorreu a tentativa de entrega, mas ninguém recebeu"
+}
+###
+GET http://localhost:8000/notification/listNotifications
+###
+DELETE  http://localhost:8000/notification/c7220cfc-caaa-4bc8-9bf6-17058b051df7
+###
+GET http://localhost:8000/notification/listChannels
+
+
