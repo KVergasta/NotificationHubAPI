@@ -3,6 +3,7 @@ package com.SpringNotificationHub.NotificationServ.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import ch.qos.logback.core.Context;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,6 @@ public class NotificationEntity implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
     
-    
     @Column(name = "type", nullable = false)
     private ChannelType type;
     
@@ -40,4 +40,5 @@ public class NotificationEntity implements Serializable {
     
     @Column(name = "user_account", nullable = false)
     private String infoUser;
+
 }

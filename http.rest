@@ -3,7 +3,7 @@ POST http://localhost:8000/notification/generator
 Content-Type: application/json
 
 {
-  "infoUser": "kauvrgst@gmail.com",
+  "infoUser": "noemibarca_64@gmail.com",
   "title": "Mensagem API de kakau",
   "type": "E",
   "message": "Sua best mandou lembrança"
@@ -14,9 +14,9 @@ Content-Type: application/json
 
 {
   "infoUser": "botelhojulia62@gmail.com",
-  "title": "Encomenda chegue em 3 dias",
+  "title": "Só para abusar mesmoo",
   "type": "E",
-  "message": "Fulaninho de tal sua encomenda está a caminho"
+  "message": "xoxo da piupiu, kkkkkkk"
 }
 ####
 POST http://localhost:8000/notification/generator

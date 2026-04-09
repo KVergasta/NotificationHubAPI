@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        .header {
+            background-color: #aa395b;
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .content {
+            padding: 30px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .message-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #aa39a4;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .btn-profile {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #aa395b;
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .signature {
+            margin-top: 20px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Notification HUB</h1>
+        </div>
+
+        <div class="content">
+            <h2>Olá!</h2>
+            <p>Você recebeu uma nova atualização através da nossa API.</p>
+            
+            <div class="message-box">
+                <h3 th:text="${title}"></h3>
+                <p th:text="${messageContent}">A nossa api veio te mandar uma notificação pelo seu e-mail.</p>
+            </div>
+
+            <p>Esta é uma notificação automática gerada pelo sistema de despacho.</p>
+        </div>
+
+        <div class="footer">
+            <p class="signature">Desenvolvido com 💻 por</p>
+            <strong>Kauane Vergasta</strong><br>
+            <small>Full Stack Developer | Intern at EMBASA</small><br>
+            
+            <a href="https://www.linkedin.com/in/kauane-vergasta-a3a602219/" class="btn-profile">
+                Ver Perfil Profissional
+            </a>
+        </div>
+    </div>
+</body>
+</html>
