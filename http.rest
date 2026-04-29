@@ -33,9 +33,8 @@ POST http://localhost:8000/notification/generator
 Content-Type: application/json
 
 {
-  # "infoUser": "silvarodrigues0817@gmail.com",
   "infoUser": "kauvergasta12@gmail.com",
-  "title": "Links de estudos",
+  "title": "Moshi moshi",
   "type": "E" ,
   "message": "http://files.cod3r.com.br/apostila-docker.pdf,https://insightlab.ufc.br/wp-content/uploads/2020/05/Introdu%C3%A7%C3%A3o-a-Docker-compactado.pdf,https://labex.io/learn/docker "
 }
@@ -44,15 +43,25 @@ POST http://localhost:8000/notification/generator
 Content-Type: application/json
 
 {
-  "infoUser": "notif.hub@outlook.com",
-  "title": "Encomenda Adiada novamente",
+  "infoUser": "kauvergasta@hotmail.com",
+  "title": "SMTP - HOTMAIL",
   "type": "E" ,
-  "message": "José Almeida, ocorreu a tentativa de entrega, mas ninguém recebeu"
+  "message": "Hotmail teste"
+}
+####
+POST http://localhost:8000/notification/generator
+Content-Type: application/json
+
+{
+  "infoUser": "notif.hub@outlook.com",
+  "title": "SMTP - Outlook",
+  "type": "E" ,
+  "message": "Outlook teste"
 }
 ###
 GET http://localhost:8000/notification/listNotifications
 ###
-DELETE  http://localhost:8000/notification/c7220cfc-caaa-4bc8-9bf6-17058b051df7
+DELETE  http://localhost:8000/notification/b122c66b-30cd-4fa9-9289-b6753656259e
 ###
 GET http://localhost:8000/notification/listChannels
 ###

@@ -1,13 +1,12 @@
 package com.SpringNotificationHub.config;
 
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-
 import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
 public class MailConfig {
@@ -23,6 +22,8 @@ public class MailConfig {
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
+        // Isso vai imprimir toda a conversa entre sua API e o Outlook no console
+mailSender.getJavaMailProperties().put("mail.debug", "true");
         return mailSender;
     
     }
@@ -30,13 +31,20 @@ public class MailConfig {
     @Bean(name="outlookSender")
     public JavaMailSender outlookSender(){
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp-mail.outlook.com");
+        mailSender.setHost("smtp.office365.com");
         mailSender.setPort(587);
         mailSender.setUsername("notif.hub@outlook.com");
-        mailSender.setPassword("arajqcmdzkibtpfg");
+        mailSender.setPassword("wkvxlvepqyazldpn"); // Certifique-se que não há espaços
+
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        props.put("mail.smtp.ssl.trust", "smtp.office365.com");    
+        props.put("mail.smtp.starttls.required", "true");
+        // Isso vai imprimir toda a conversa entre sua API e o Outlook no console
+mailSender.getJavaMailProperties().put("mail.debug", "true");
+
         return mailSender;
     }
 

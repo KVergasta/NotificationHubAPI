@@ -23,10 +23,9 @@ import com.SpringNotificationHub.NotificationServ.model.ChannelType;
 @Setter
 @Service
 public class EmailService implements BroadcastChannel {
-
-    @Value("${spring.mail.username}")
+    @Value("${app.mail.gmail.username}") 
     private String admMailAddress;
-    
+
     private final JavaMailSender gmailSender;
     private final JavaMailSender outlookSender;
     private final TemplateEngine templateEngine;
@@ -60,8 +59,8 @@ public class EmailService implements BroadcastChannel {
                 StandardCharsets.UTF_8.name()
             );
             helper.setTo(notificationEntit.getInfoUser());
-            helper.setFrom(admMailAddress);
-            helper.setSubject("API - Notification Hub");
+            helper.setFrom(chosenSender == gmailSender ? admMailAddress : "notif.hub@outlook.com");
+            helper.setSubject(notificationEntit.getTitle()+" - API Notification Hub");
             helper.setText(process,true);
 
             chosenSender.send(mimeMessage);
