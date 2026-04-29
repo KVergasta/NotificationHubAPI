@@ -35,10 +35,6 @@ public GeneratorNotification(TypeRepository typeRepository,
     this.broadcasts = broadcasts; 
 }
 
-    // public void sendMail(NotificationEntity msg, String info){
-
-    //     emailService.send(msg, info);
-    // }
 
     public String generatorMsg (NotificationEntity notification){
         return broadcasts.stream()
