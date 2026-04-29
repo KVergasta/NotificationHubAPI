@@ -26,7 +26,6 @@ public class GeneratorNotification {
     private NotificationRepository notificationRepository;
     private List<BroadcastChannel> broadcasts;
     
-// Adicione o 'broadcasts' aqui para o Spring preencher a lista
 public GeneratorNotification(TypeRepository typeRepository, 
                             NotificationRepository notificationRepository, 
                             List<BroadcastChannel> broadcasts) {
@@ -42,8 +41,7 @@ public GeneratorNotification(TypeRepository typeRepository,
             .findFirst()
             .map(channel -> {
                 channel.send(notification);
-                // sendMail(notification, "kauvergasta12@gmail.com");
-               return "Notification sent via " + channel.getClass().getSimpleName();
+                return "Notification sent via " + channel.getClass().getSimpleName();
             })
             .orElseThrow(() -> new RuntimeException("No channel found for type: " + notification.getType()));
     }

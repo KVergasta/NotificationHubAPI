@@ -2,19 +2,13 @@ package com.SpringNotificationHub.NotificationServ.service;
 
 import java.nio.charset.StandardCharsets;
 
-import javax.tools.JavaFileManager;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.spring6.SpringTemplateEngine;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,30 +26,34 @@ public class EmailService implements BroadcastChannel {
 
     @Value("${spring.mail.username}")
     private String admMailAddress;
+    
+    private final JavaMailSender gmailSender;
+    private final JavaMailSender outlookSender;
+    private final TemplateEngine templateEngine;
 
-    @Autowired
-    private JavaMailSender javaMailSender;
-
-    @Autowired
-    private TemplateEngine templateEngine;
-
-    @Autowired
-    private SpringTemplateEngine springTemplateEngine;
-
-    public EmailService(JavaMailSender javaMailSender, SpringTemplateEngine springTemplateEngine){
-        this.javaMailSender = javaMailSender;
-        this.springTemplateEngine = springTemplateEngine;
+    // Use o construtor para injetar especificamente o que você precisa
+    public EmailService(
+        @Qualifier("gmailSender") JavaMailSender gmailSender, 
+        @Qualifier("outlookSender") JavaMailSender outlookSender,
+        TemplateEngine templateEngine
+    ){
+        this.gmailSender = gmailSender;
+        this.outlookSender = outlookSender;
+        this.templateEngine = templateEngine;
     }
 
     @Override
     public String send(NotificationEntity notificationEntit) {
-
         try{
-            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+            JavaMailSender chosenSender = notificationEntit.getInfoUser().contains("@gmail.com") ? gmailSender : outlookSender;
+
+            MimeMessage mimeMessage = chosenSender.createMimeMessage();
             Context context = new Context();
             context.setVariable("username", notificationEntit.getInfoUser()); 
             context.setVariable("messageContent", notificationEntit.getMessage());
-            context.setVariable("title", notificationEntit.getTitle()); // Use os dados da entidade!
+            context.setVariable("title", notificationEntit.getTitle());
+            
             String process = templateEngine.process("notification.html", context);
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,
                 MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
@@ -65,12 +63,9 @@ public class EmailService implements BroadcastChannel {
             helper.setFrom(admMailAddress);
             helper.setSubject("API - Notification Hub");
             helper.setText(process,true);
-            // SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-            // simpleMailMessage.setFrom(admMailAddress);
-            // simpleMailMessage.setTo(notificationEntit.getInfoUser());
-            // simpleMailMessage.setSubject(notificationEntit.getTitle());
-            // simpleMailMessage.setText(notificationEntit.getMessage());
-            javaMailSender.send(mimeMessage);
+
+            chosenSender.send(mimeMessage);
+            
             return  "The message is send";
         } catch (Exception e){
             return "The message didn't send";
@@ -81,5 +76,6 @@ public class EmailService implements BroadcastChannel {
     public ChannelType type(){
         return ChannelType.EMAIL;
     }
+
 
 }
