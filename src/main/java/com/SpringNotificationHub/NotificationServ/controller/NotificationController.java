@@ -31,9 +31,6 @@ public class NotificationController {
     private GeneratorNotification generatorNotification;
     @Autowired
     private List<BroadcastChannel> broadcastChannel;
-    
-    // @Autowired
-    // private List<TypeEntity> typeEntityList;
 
 @PostMapping("/generator")
     public ResponseEntity<?> notification (

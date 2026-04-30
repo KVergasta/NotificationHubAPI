@@ -3,7 +3,6 @@ package com.SpringNotificationHub.NotificationServ.model;
 import java.io.Serializable;
 import java.util.UUID;
 
-import ch.qos.logback.core.Context;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

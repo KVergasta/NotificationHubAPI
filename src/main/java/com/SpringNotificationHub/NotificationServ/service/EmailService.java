@@ -30,7 +30,6 @@ public class EmailService implements BroadcastChannel {
     private final JavaMailSender outlookSender;
     private final TemplateEngine templateEngine;
 
-    // Use o construtor para injetar especificamente o que você precisa
     public EmailService(
         @Qualifier("gmailSender") JavaMailSender gmailSender, 
         @Qualifier("outlookSender") JavaMailSender outlookSender,
