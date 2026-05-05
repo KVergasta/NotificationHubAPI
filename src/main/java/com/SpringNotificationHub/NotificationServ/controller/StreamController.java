@@ -1,5 +1,7 @@
 package com.SpringNotificationHub.NotificationServ.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +21,12 @@ public class StreamController {
     }
 
     @PostMapping("/kafka")
-    public void sendMessage(@RequestBody NotificationEntity message) {
+    public ResponseEntity<?> sendMessage(@RequestBody NotificationEntity message) {
         streamService.sendMessage(message);
-    }
+            return ResponseEntity
+            .status(HttpStatus.ACCEPTED)
+            .header("title", message.getStatus().name())
+            .body(null);
+        }
 
 }

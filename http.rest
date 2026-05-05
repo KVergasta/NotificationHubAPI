@@ -36,6 +36,7 @@ Content-Type: application/json
   "infoUser": "kauvergasta12@gmail.com",
   "title": "Moshi moshi",
   "type": "E" ,
+  "status": "PENDING",
   "message": "http://files.cod3r.com.br/apostila-docker.pdf,https://insightlab.ufc.br/wp-content/uploads/2020/05/Introdu%C3%A7%C3%A3o-a-Docker-compactado.pdf,https://labex.io/learn/docker "
 }
 ####
@@ -43,14 +44,14 @@ POST http://localhost:8000/stream/kafka
 Content-Type: application/json
 
 {
-  "infoUser": "kauvergasta@hotmail.com",
-  "title": "SMTP - HOTMAIL",
+  "infoUser": "kauvergasta12@gmail.com",
+  "title": "SMTP - Gmail",
   "type": "P" ,
-  "message": "Hotmail teste",
+  "message": "Gmail teste",
   "status": "SENT"
 }
 ####
-POST http://localhost:8000/notification/generator
+POST http://localhost:8000/stream/kafka
 Content-Type: application/json
 
 {
