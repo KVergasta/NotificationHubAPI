@@ -7,8 +7,8 @@
 * **Banco de Dados:** PostegresSQL (Container)
 * **Persistência:** Spring Data JPA / Hibernate
 * **Comunicação:** Spring Mail (SMTP/Gmail)
-* **Produtividade:** Lombok
-* **Ferramentas:** Maven, Jackson (JSON handling), Docker ()
+* **Produtividade:** Lombok, Docker
+* **Ferramentas:** Maven, Jackson (JSON handling), Kafka (Container)
 
 
 ## 🏗️ Arquitetura e Design Patterns
