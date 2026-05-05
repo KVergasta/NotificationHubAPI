@@ -39,7 +39,7 @@ Content-Type: application/json
   "message": "http://files.cod3r.com.br/apostila-docker.pdf,https://insightlab.ufc.br/wp-content/uploads/2020/05/Introdu%C3%A7%C3%A3o-a-Docker-compactado.pdf,https://labex.io/learn/docker "
 }
 ####
-POST http://localhost:8000/notification/generator
+POST http://localhost:8000/stream/kafka
 Content-Type: application/json
 
 {
@@ -57,7 +57,9 @@ Content-Type: application/json
   "infoUser": "notif.hub@outlook.com",
   "title": "SMTP - Outlook",
   "type": "E" ,
-  "message": "Outlook teste"
+  "message": "Outlook teste",
+  "status": "PENDING"
+
 }
 ####
 POST http://localhost:8000/notification/generator
@@ -71,9 +73,20 @@ Content-Type: application/json
   "status": "FAILED"
 }
 ###
+POST http://localhost:8000/stream/kafka
+Content-Type: application/json
+
+{
+  "infoUser": "teste",
+  "title": "sei la",
+  "type": "P" ,
+  "message": "teste",
+  "status": "FAILED"
+}
+###
 GET http://localhost:8000/notification/listNotifications
 ###
-DELETE  http://localhost:8000/notification/61cf1fa4-c7a7-43bc-bd49-117c7151f7e6
+DELETE  http://localhost:8000/notification/6b324f35-061c-4f2c-8f25-978ce7fcc06c
 ###
 GET   http://localhost:8000/notification/61cf1fa4-c7a7-43bc-bd49-117c7151f7e6
 ###
