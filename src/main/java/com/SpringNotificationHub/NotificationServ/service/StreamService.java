@@ -30,7 +30,7 @@ public class StreamService {
     }
 
     @KafkaListener(topicPartitions = @TopicPartition(topic = "notification-stream", partitions = {"0", "1"}))
-    public void listen(NotificationEntity message) {
-        System.out.println("Received Message: " + message);
+    public void listen(GeneratorNotification generatorNotification, NotificationEntity message) {
+        generatorNotification.generatorMsg(message);
     }
 }
