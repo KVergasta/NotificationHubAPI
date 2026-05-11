@@ -43,12 +43,9 @@ public class NotificationEntity implements Serializable {
     
     @Column(name = "user_account", nullable = false)
     private String infoUser;
- 
-    // definir o status atraves do apache kafka, para verificar se a mensagem foi enviada ou não
-    // definir o status como "PENDING" quando a notificação for criada, e depois atualizar para "SENT" ou "FAILED" dependendo do resultado do envio
-    // criar uma tabela no frontend para exibir as notificações e seus status, permitindo que os usuários vejam quais notificações foram enviadas com sucesso e quais falharam
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private StatusType status;
+    private StatusType status = StatusType.PENDING;
 
 }

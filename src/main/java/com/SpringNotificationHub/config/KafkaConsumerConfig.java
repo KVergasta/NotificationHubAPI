@@ -25,34 +25,27 @@ public class KafkaConsumerConfig {
       @Value("${spring.kafka.consumer.group-id}")
       private String groupId;
 
-    @Bean
-    public ConsumerFactory<String, NotificationEntity> consumerFactory() {
-        Map<String, Object> props = new HashMap<>();
-        props.put(
-          ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, 
-          bootstrapAddress);
-        props.put(
-          JsonDeserializer.USE_TYPE_INFO_HEADERS, "com.SpringNotificationHub.NotificationServ.model.NotificationEntity"
-        );
-        props.put(
-          JsonDeserializer.TRUSTED_PACKAGES,
-          "com.SpringNotificationHub.NotificationServ.model");
-        props.put(
-          ConsumerConfig.GROUP_ID_CONFIG, 
-          groupId);
-        props.put(
-          ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, 
-          StringDeserializer.class);
-        props.put(
-          ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, 
-          JsonDeserializer.class);
-        return new DefaultKafkaConsumerFactory<>(props);
-    }
+ @Bean
+public ConsumerFactory<String, NotificationEntity> consumerFactory() {
+    Map<String, Object> props = new HashMap<>();
+    props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+    
+    // ESTA É A PARTE CRUCIAL:
+    JsonDeserializer<NotificationEntity> jsonDeserializer = new JsonDeserializer<>(NotificationEntity.class);
+    jsonDeserializer.addTrustedPackages("com.SpringNotificationHub.NotificationServ.model");
+    jsonDeserializer.setUseTypeHeaders(false); // Evita conflitos de pacotes se o Producer for de outro projeto
+
+    return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), jsonDeserializer);
+}
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, NotificationEntity> 
       kafkaListenerContainerFactory() {
-   
+  
         ConcurrentKafkaListenerContainerFactory<String, NotificationEntity> factory =
           new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());

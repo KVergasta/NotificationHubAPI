@@ -3,41 +3,9 @@ POST http://localhost:8000/notification/generator
 Content-Type: application/json
 
 {
-  "infoUser": "noemibarca_64@gmail.com",
-  "title": "Mensagem API de kakau",
-  "type": "E",
-  "message": "Sua best mandou lembrança"
-}
-####
-POST http://localhost:8000/notification/generator
-Content-Type: application/json
-
-{
-  "infoUser": "botelhojulia62@gmail.com",
-  "title": "Só para abusar mesmoo",
-  "type": "E",
-  "message": "xoxo da piupiu, kkkkkkk"
-}
-####
-POST http://localhost:8000/notification/generator
-Content-Type: application/json
-
-{
-  "infoUser":"notificationhubservice@gmail.com",
-  "title": "Notificação controller",
-  "type": "W",
-  "status": "PENDING",
-  "message": "Hello - Moshi Moshi"
-}
-####
-POST http://localhost:8000/notification/generator
-Content-Type: application/json
-
-{
-  "infoUser": "notificationhubservice@gmail.com",
-  "title": "Kafka",
+  "infoUser": "kauvrgst@gmail.com",
+  "title": "Controller",
   "type": "E" ,
-  "status": "PENDING",
   "message": "http://files.cod3r.com.br/apostila-docker.pdf,https://insightlab.ufc.br/wp-content/uploads/2020/05/Introdu%C3%A7%C3%A3o-a-Docker-compactado.pdf,https://labex.io/learn/docker "
 }
 ####
@@ -45,11 +13,20 @@ POST http://localhost:8000/stream/kafka
 Content-Type: application/json
 
 {
-  "infoUser": "kauvergasta12@gmail.com",
-  "title": "SMTP - Gmail",
-  "type": "P" ,
-  "message": "Gmail teste",
-  "status": "SENT"
+  "infoUser": "kauvrgst@gmail.com",
+  "title": "Kafka - status",
+  "type": "E" ,
+  "message": "Teste"
+}
+###
+POST http://localhost:8000/stream/kafka
+Content-Type: application/json
+
+{
+  "infoUser": "kauvrgst@gmail.com",
+  "title": "sei la",
+  "type": "E" ,
+  "message": "teste"
 }
 ####
 POST http://localhost:8000/stream/kafka
@@ -63,32 +40,11 @@ Content-Type: application/json
   "status": "PENDING"
 
 }
-####
-POST http://localhost:8000/notification/generator
-Content-Type: application/json
 
-{
-  "infoUser": "teste",
-  "title": "sei la",
-  "type": "P" ,
-  "message": "teste",
-  "status": "FAILED"
-}
-###
-POST http://localhost:8000/stream/kafka
-Content-Type: application/json
-
-{
-  "infoUser": "teste",
-  "title": "sei la",
-  "type": "P" ,
-  "message": "teste",
-  "status": "FAILED"
-}
 ###
 GET http://localhost:8000/notification/listNotifications
 ###
-DELETE  http://localhost:8000/notification/6b324f35-061c-4f2c-8f25-978ce7fcc06c
+DELETE  http://localhost:8000/notification/ffbe5f53-a834-4328-9a69-73376c0f3a64
 ###
 GET   http://localhost:8000/notification/61cf1fa4-c7a7-43bc-bd49-117c7151f7e6
 ###

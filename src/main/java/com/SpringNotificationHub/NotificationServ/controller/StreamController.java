@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.SpringNotificationHub.NotificationServ.model.BroadcastChannel;
 import com.SpringNotificationHub.NotificationServ.model.NotificationEntity;
+import com.SpringNotificationHub.NotificationServ.model.StatusType;
 import com.SpringNotificationHub.NotificationServ.service.GeneratorNotification;
 import com.SpringNotificationHub.NotificationServ.service.StreamService;
 
@@ -28,13 +29,12 @@ public class StreamController {
         this.streamService = streamService;
     }
 
-    @PostMapping("/kafka")
-    public ResponseEntity<?> sendMessage(@RequestBody NotificationEntity message) {
-        streamService.listen(generatorNotification,message);
-            return ResponseEntity
-            .status(HttpStatus.ACCEPTED)
-            .header("title", message.getStatus().name())
-            .body(null);
-        }
+@PostMapping("/kafka")
+public ResponseEntity<?> sendMessage(@RequestBody NotificationEntity message) {
+    generatorNotification.saveNotification(message);
+    streamService.sendMessage(message); 
+    
+    return ResponseEntity.status(HttpStatus.ACCEPTED).body("Processando envio...");
+}
 
 }
