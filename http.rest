@@ -8,43 +8,11 @@ Content-Type: application/json
   "type": "E" ,
   "message": "http://files.cod3r.com.br/apostila-docker.pdf,https://insightlab.ufc.br/wp-content/uploads/2020/05/Introdu%C3%A7%C3%A3o-a-Docker-compactado.pdf,https://labex.io/learn/docker "
 }
-####
-POST http://localhost:8000/stream/kafka
-Content-Type: application/json
-
-{
-  "infoUser": "kauvrgst@gmail.com",
-  "title": "Kafka - status",
-  "type": "E" ,
-  "message": "Teste"
-}
-###
-POST http://localhost:8000/stream/kafka
-Content-Type: application/json
-
-{
-  "infoUser": "kauvrgst@gmail.com",
-  "title": "sei la",
-  "type": "E" ,
-  "message": "teste"
-}
-####
-POST http://localhost:8000/stream/kafka
-Content-Type: application/json
-
-{
-  "infoUser": "notif.hub@outlook.com",
-  "title": "SMTP - Outlook",
-  "type": "E" ,
-  "message": "Outlook teste",
-  "status": "PENDING"
-
-}
 
 ###
 GET http://localhost:8000/notification/listNotifications
 ###
-DELETE  http://localhost:8000/notification/15c0775e-167e-46b9-988f-3924a2cc5dee
+DELETE  http://localhost:8000/notification/28068bbf-3777-441e-b61b-387656c814ba
 ###
 GET   http://localhost:8000/notification/61cf1fa4-c7a7-43bc-bd49-117c7151f7e6
 ###
