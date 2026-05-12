@@ -4,6 +4,7 @@ package com.SpringNotificationHub.NotificationServ.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +21,17 @@ import com.SpringNotificationHub.NotificationServ.model.BroadcastChannel;
 import com.SpringNotificationHub.NotificationServ.model.NotificationEntity;
 import com.SpringNotificationHub.NotificationServ.model.TypeEntity;
 import com.SpringNotificationHub.NotificationServ.service.GeneratorNotification;
+import com.SpringNotificationHub.NotificationServ.service.StreamService;
 
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/notification")
 public class NotificationController {
 
     @Autowired
     private GeneratorNotification generatorNotification;
+
     @Autowired
     private List<BroadcastChannel> broadcastChannel;
 
@@ -42,8 +45,6 @@ public class NotificationController {
             .orElseThrow(() -> new NotFoundException("Channel not found for type: " + notificationEntity.getType()));
 
             String type = bc.type().name();
-
-            generatorNotification.saveNotification(notificationEntity);
 
             return ResponseEntity
             .status(HttpStatus.ACCEPTED)

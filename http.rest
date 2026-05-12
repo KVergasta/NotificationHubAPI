@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "infoUser": "kauvrgst@gmail.com",
-  "title": "Controller",
+  "title": "Generator chamando kafka no service",
   "type": "E" ,
   "message": "http://files.cod3r.com.br/apostila-docker.pdf,https://insightlab.ufc.br/wp-content/uploads/2020/05/Introdu%C3%A7%C3%A3o-a-Docker-compactado.pdf,https://labex.io/learn/docker "
 }
@@ -44,7 +44,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/notification/listNotifications
 ###
-DELETE  http://localhost:8000/notification/ffbe5f53-a834-4328-9a69-73376c0f3a64
+DELETE  http://localhost:8000/notification/15c0775e-167e-46b9-988f-3924a2cc5dee
 ###
 GET   http://localhost:8000/notification/61cf1fa4-c7a7-43bc-bd49-117c7151f7e6
 ###

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +13,7 @@ import com.SpringNotificationHub.NotificationServ.exceptions.NotFoundException;
 import com.SpringNotificationHub.NotificationServ.model.BroadcastChannel;
 import com.SpringNotificationHub.NotificationServ.model.NotificationEntity;
 import com.SpringNotificationHub.NotificationServ.model.TypeEntity;
+import com.SpringNotificationHub.NotificationServ.service.StreamService;
 import com.SpringNotificationHub.NotificationServ.repository.NotificationRepository;
 import com.SpringNotificationHub.NotificationServ.repository.TypeRepository;
 
@@ -25,13 +28,17 @@ public class GeneratorNotification {
     private TypeRepository typeRepository;
     private NotificationRepository notificationRepository;
     private List<BroadcastChannel> broadcasts;
+
+    @Autowired
+    @Lazy
+    StreamService streamService;
     
 public GeneratorNotification(TypeRepository typeRepository, 
                             NotificationRepository notificationRepository, 
                             List<BroadcastChannel> broadcasts) {
     this.typeRepository = typeRepository;
     this.notificationRepository = notificationRepository;
-    this.broadcasts = broadcasts; 
+    this.broadcasts = broadcasts;
 }
 
 
@@ -40,10 +47,12 @@ public GeneratorNotification(TypeRepository typeRepository,
             .filter(channel -> channel.type() == notification.getType())
             .findFirst()
             .map(channel -> {
-                channel.send(notification);
-                return "Notification sent via " + channel.getClass().getSimpleName();
+                // this.saveNotification(notification);
+                streamService.sendMessage(notification);
+                return "Message status: " + notification.getStatus().toString();
             })
             .orElseThrow(() -> new RuntimeException("No channel found for type: " + notification.getType()));
+            
     }
 
     public NotificationEntity saveNotification(NotificationEntity notificationEntity){
