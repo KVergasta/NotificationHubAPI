@@ -12,7 +12,7 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/notification/listNotifications
 ###
-DELETE  http://localhost:8000/notification/28068bbf-3777-441e-b61b-387656c814ba
+DELETE  http://localhost:8000/notification/c75227b5-7c30-4772-90a9-00a444a2915b
 ###
 GET   http://localhost:8000/notification/61cf1fa4-c7a7-43bc-bd49-117c7151f7e6
 ###
