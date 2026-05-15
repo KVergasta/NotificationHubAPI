@@ -24,7 +24,7 @@ import com.SpringNotificationHub.NotificationServ.service.GeneratorNotification;
 import com.SpringNotificationHub.NotificationServ.service.StreamService;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4300")
 @RestController
 @RequestMapping("/notification")
 public class NotificationController {
