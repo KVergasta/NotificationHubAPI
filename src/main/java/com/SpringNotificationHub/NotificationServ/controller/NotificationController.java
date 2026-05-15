@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.SpringNotificationHub.NotificationServ.exceptions.NotFoundException;
@@ -26,7 +28,7 @@ import com.SpringNotificationHub.NotificationServ.service.StreamService;
 
 @CrossOrigin(origins = "http://localhost:4300")
 @RestController
-@RequestMapping("/notification")
+@RequestMapping("/api/notification")
 public class NotificationController {
 
     @Autowired
@@ -45,12 +47,16 @@ public class NotificationController {
             .orElseThrow(() -> new NotFoundException("Channel not found for type: " + notificationEntity.getType()));
 
             String type = bc.type().name();
+            String resultMessage = generatorNotification.generatorMsg(notificationEntity);
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", resultMessage);
 
             return ResponseEntity
             .status(HttpStatus.ACCEPTED)
             .header("Channel", type)
             .header("title", notificationEntity.getTitle())
-            .body(generatorNotification.generatorMsg(notificationEntity));
+            .body(response);
         }
 
 @GetMapping("/listChannels")
